@@ -1,0 +1,301 @@
+FORMAT: 1A
+HOST: http://192.168.0.90:3000/api/v1
+
+# JobCard API
+
+### Version: v1
+This API documentation is given details about the all JobCard API list.
+It is basically a reference documents which describes:
+
+  - A Software’s code
+  - The parameters a programmer sends (or the request sent) to the software.
+  - What the software does
+  - Response from the software
+
+API documentation includes information about the code. It gives details about the APIs (also called methods and functions)
+that developers use to connect or interface with the software application.
+
+# Group Other
+<!--------------------------------------- Other API START --------------------------------------->
+This section for Other APIs
+
+### Get Metadata (Sync API)  [GET /other/get-metadata?lastdatetime={lastdatetime}]
+Getting meta data of master table. 
+
++ Parameters
+    + lastdatetime: `1475971200000` (timestamp,optional) - timestamp of last sync.
+
++ Request (application/json)
+    + Headers
+
+            api-key: 1,
+            udid: "8817480565574762",
+            device-type: "android" // [android | ios]
+
+
++ Response 200 (application/json)
+
+    + Body    
+
+            {
+                "status": true,
+                "page": {
+                    "next": "/other/get-metadata?lastdatetime=1475971200000&pageno=2&datetime=1507208695714",
+                    "serverdatetime": 1507208695714
+                },
+                "data": {
+                    "countries": [
+                        {
+                            "countryId": 1,
+                            "country_code": "+91",
+                            "country_name": "India",
+                            "mobile_max_length": 10,
+                            "record_status": 1
+                        }
+                    ],
+                    "states": [
+                        {
+                            "state_id": 1,
+                            "country_id": 1,
+                            "state_name": "Gujarat",
+                            "record_status": 1
+                        },
+                        {
+                            "state_id": 2,
+                            "country_id": 1,
+                            "state_name": "Goa",
+                            "record_status": 1
+                        },
+                        {
+                            "state_id": 3,
+                            "country_id": 1,
+                            "state_name": "Rajasthan",
+                            "record_status": 1
+                        },
+                        {
+                            "state_id": 4,
+                            "country_id": 1,
+                            "state_name": "Andaman and Nicobar Islands",
+                            "record_status": 1
+                        },
+                        {
+                            "state_id": 5,
+                            "country_id": 1,
+                            "state_name": "Andhra Pradesh",
+                            "record_status": 1
+                        },
+                        {
+                            "state_id": 6,
+                            "country_id": 1,
+                            "state_name": "Arunachal Pradesh",
+                            "record_status": 1
+                        },
+                        {
+                            "state_id": 7,
+                            "country_id": 1,
+                            "state_name": "Assam",
+                            "record_status": 1
+                        },
+                        {
+                            "state_id": 8,
+                            "country_id": 1,
+                            "state_name": "Bihar",
+                            "record_status": 1
+                        },
+                        {
+                            "state_id": 9,
+                            "country_id": 1,
+                            "state_name": "Chandigarh",
+                            "record_status": 1
+                        },
+                        {
+                            "state_id": 10,
+                            "country_id": 1,
+                            "state_name": "Chhattisgarh",
+                            "record_status": 1
+                        }
+                    ],
+                    "cities": [
+                        {
+                            "city_id": 1,
+                            "country_id": 1,
+                            "state_id": 1,
+                            "city_name": "Ahmedabad",
+                            "record_status": 1
+                        },
+                        {
+                            "city_id": 2,
+                            "country_id": 1,
+                            "state_id": 1,
+                            "city_name": "Surat",
+                            "record_status": 1
+                        },
+                        {
+                            "city_id": 3,
+                            "country_id": 1,
+                            "state_id": 1,
+                            "city_name": "Vadodara",
+                            "record_status": 1
+                        },
+                        {
+                            "city_id": 4,
+                            "country_id": 1,
+                            "state_id": 1,
+                            "city_name": "Rajkot",
+                            "record_status": 1
+                        },
+                        {
+                            "city_id": 5,
+                            "country_id": 1,
+                            "state_id": 1,
+                            "city_name": "Bhavnagar",
+                            "record_status": 1
+                        },
+                        {
+                            "city_id": 6,
+                            "country_id": 1,
+                            "state_id": 1,
+                            "city_name": "Jamnagar",
+                            "record_status": 1
+                        },
+                        {
+                            "city_id": 7,
+                            "country_id": 1,
+                            "state_id": 1,
+                            "city_name": "Junagadh",
+                            "record_status": 1
+                        },
+                        {
+                            "city_id": 8,
+                            "country_id": 1,
+                            "state_id": 1,
+                            "city_name": "Gandhidham",
+                            "record_status": 1
+                        },
+                        {
+                            "city_id": 9,
+                            "country_id": 1,
+                            "state_id": 1,
+                            "city_name": "Nadiad",
+                            "record_status": 1
+                        },
+                        {
+                            "city_id": 10,
+                            "country_id": 1,
+                            "state_id": 1,
+                            "city_name": "Gandhinagar",
+                            "record_status": 1
+                        }
+                    ],
+                    "jobmaster": [
+                        {
+                            "job_id": 1,
+                            "job_name": "Cutting",
+                            "record_status": 1
+                        },
+                        {
+                            "job_id": 3,
+                            "job_name": "Ironing",
+                            "record_status": 1
+                        },
+                        {
+                            "job_id": 4,
+                            "job_name": "Packaging",
+                            "record_status": 1
+                        },
+                        {
+                            "job_id": 2,
+                            "job_name": "Stitching",
+                            "record_status": 1
+                        }
+                    ],
+                    "idproofs": [
+                        {
+                            "idproof_id": 1,
+                            "id_name": "PAN",
+                            "record_status": 1
+                        }
+                    ],
+                    "colors": [
+                        {
+                            "color_id": 1,
+                            "color_name": "Red",
+                            "record_status": 1
+                        }
+                    ],
+                    "units": [
+                        {
+                            "unit_id": 1,
+                            "unit_name": "KG",
+                            "record_status": 1
+                        }
+                    ]
+                }
+            }
+
+            {
+              "status": false,
+              "error": {
+                code: 28001,
+                message: "Error in getting sync meta data."
+              }
+            }    
+
+### Media Upload (Sync API)  [POST /other/upload]
+Upload Images
+
++ Request (application/json)
+    + Headers
+
+            api-key: 1,
+            udid: "8817480565574762",
+            device-type: "android" // [android | ios]
+            authorization : '67847d00-b40d-11e7-8cdf-8fbb889311b7'
+
+    + Body
+
+            {
+                file: fileObject
+                user_id: 1 // if file is user profile photo
+                karigar_id: 1 // if file is karigar photo
+                customer_id: 1 // if file is customer photo
+                design_id: 1, design_image_id : 1 // if file is design image                 
+                staff_id: 1 // if file is staff profile photo
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                //If User profile photo upload    
+                "status": true,
+                "data": {
+                    "url": "http://192.168.2.9:3000/api/v1/other/get-media/1/1509114436136_S2G9IXbDb9WK.jpg"
+                }
+            }
+
+            {
+                //If Karigar photo upload    
+                "status": true,
+                "data": {
+                    "url": "http://192.168.2.9:3000/api/v1/other/get-media/2/1509114436136_S2G9IXbDb9WK.jpg"
+                }
+            }
+
+            {
+                //If Customer photo upload    
+                "status": true,
+                "data": {
+                    "url": "http://192.168.2.9:3000/api/v1/other/get-media/3/1509114436136_S2G9IXbDb9WK.jpg"
+                }
+            }
+
+            {
+                //If Staff photo upload    
+                "status": true,
+                "data": {
+                    "url": "http://192.168.2.9:3000/api/v1/other/get-media/5/1509114436136_S2G9IXbDb9WK.jpg"
+                }
+            }
+

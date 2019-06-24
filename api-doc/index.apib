@@ -1,0 +1,755 @@
+FORMAT: 1A
+HOST: http://192.168.0.3:3000/api/v1
+
+# AIM API
+
+### Version: v1
+This API documentation is given details about the all AIM API list.
+It is basically a reference documents which describes:
+
+  - A Software’s code
+  - The parameters a programmer sends (or the request sent) to the software.
+  - What the software does
+  - Response from the software
+
+API documentation includes information about the code. It gives details about the APIs (also called methods and functions)
+that developers use to connect or interface with the software application.
+
+# Group User
+<!--------------------------------------- USER API START --------------------------------------->
+This section groups User specific API
+
+### SIGNUP  [POST /user/signup]
+signup in AIM.
+
++ Request (application/json)
+  + Headers
+
+            api-key: 1,
+            udid: "8817480565574762",
+            device-type: "android"
+
+  + Body
+
+            {
+              "mobile": "9898500440" //required 
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "status": true,
+              "data": {
+                "code": 17007,
+                "message": "One Time Password (OTP) has been sent to your mobile ******4585, please enter the same here to verify. OTP 17089"
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                "code": 2025,
+                "message": "Invalid Mobile Number"
+              }
+            }
+
+### SIGNOUT  [POST /user/signout]
+Signout in AIM.
+
++ Request (application/json)
+  + Headers
+
+            api-key: 1,
+            udid: "8817480565574762",
+            device-type: "android"
+
+  + Body
+  
+
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "status": true,
+              "data": {
+                "code": 17018,
+                "message": "Signed out successfully"
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                "code": 17019,
+                "message": "Sorry, we could not sign you out. Try again."
+              }
+            }
+
+### Verify an OTP [POST /user/user-verifyotp]
+Verify OTP of specified mobile number.
+
++ Request (application/json)
+    + Headers
+
+            api-key: 1,
+            udid: "8817480565574762",
+            device-type: "ios"
+
+    + Body
+
+            {
+              "mobile": "9898500440", //required
+              "otp": "4563" //required
+            }
+
++ Response 201 (application/json)
+
+    + Body
+
+            {
+                "status": true,
+                "data": {
+                    "user_id": 1,
+                    "user_type_id": 1,
+                    "user_type": "admin",
+                    "name": "",
+                    "email": "",
+                    "mobile": "9824750550",
+                    "photo": "",
+                    "pin": "",
+                    "dob": "",
+                    "cityId": "1",
+                    "country_code": "91",
+                    "access_token": "8810fb30-3102-11e8-a7f7-551085bfb2f6"
+                }
+            }
+
+            {
+              "status": false,
+              "error": {
+                "code": 2007,
+                "message": "Invalid verify otp request"
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                "code": 17009,
+                "message": "Invalid one time password (OTP) entered."
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                "code": 17008,
+                "message": "One Time Password (OTP) was expired."
+              }
+            }
+
+### Insert User [POST /user/user-insert]
+Create new user.
+
++ Request (application/json)
+    + Headers
+
+            api-key: 1,
+            udid: "8817480565574762",
+            device-type: "ios"
+
+    + Body
+
+            {
+              "user_type_id": 1
+              "name": "test"
+              "email": "test@gmail.com",
+              "mobile": "9755413212",
+              "photo": "",
+              "pin": "",
+              "dob": "",
+              "cityId": 1
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "status": true,
+              "data": {
+                "code": 17014,
+                "message": "User info inserted successfully"
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                "code": 17013,
+                "message": "Error in user info Insert."
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                code: 2026,
+                message: 'Invalid user profile insert request'
+              }
+            }
+
+### Update User [POST /user/user-update]
+Update user information
+
++ Request (application/json)
+    + Headers
+
+            api-key: 1,
+            udid: "8817480565574762",
+            device-type: "ios"
+
+    + Body
+
+            {
+              "user_type_id": 2
+              "name": "test"
+              "email": "test@gmail.com",
+              "mobile": "9854654980",
+              "photo": "",
+              "pin": "",
+              "dob": "",
+              "cityId": 1
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "status": true,
+              "data": {
+                code: 17012,
+                message: 'User info updated successfully'
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                code: 17011,
+                message: 'Error in user info update.'
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                code: 2008,
+                message: 'Invalid user profile update request'
+              }
+            }
+
+### Delete User [POST /user/user-delete]
+Delete user information (Soft delete)
+
++ Request (application/json)
+    + Headers
+
+            api-key: 1,
+            udid: "8817480565574762",
+            device-type: "ios"
+
+    + Body
+
+            {
+              "mobile": "9825871230",
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "status": true,
+              "data": {
+                code: 17016,
+                message: 'User info deleted successfully'
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                code: 17015,
+                message: 'Error in user info delete.'
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                code: 2008,
+                message: 'Invalid user profile update request'
+              }
+            }
+
+### Get UserInfo [GET /user/get-userInfo]
+Get User Info 
+
++ Request (application/json)
+    + Headers
+
+            api-key: "1",
+            udid: "88174805",
+            device-type: "web",
+            authorization: "55d66e40-d98a-11e7-869c-8b384aeae745"
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "status": true,
+              "data": {
+                  "user_id": 1,
+                  "user_type_id": 2,
+                  "user_type": "User",
+                  "name": "nikunj",
+                  "email": "nikunj.patel@hotmail.com",
+                  "mobile": "9824750550",
+                  "alternate_number": "8733847806",
+                  "pin": "382028",
+                  "dob": "0000-00-00",
+                  "cityId": "1",
+                  "country_code": "91",
+                  "photo": "",
+                  "address": "",
+                }
+            }
+
+### Update UserInfo [POST /user/update-userInfo]
+Update user information
+
++ Request (application/json)
+    + Headers
+
+              api-key:1
+              udid:8817480565574762
+              device-type:web
+              Authorization:b6db2fd0-db3f-11e7-9d04-c1881bd29c91
+
+    + Body
+
+            {
+              "status": true,
+              "data": {
+                  "user_id": 1,
+                  "user_type_id": 2,
+                  "user_type": "User",
+                  "name": "nikunj",
+                  "email": "nikunj.patel@hotmail.com",
+                  "mobile": "9824750550",
+                  "alternate_number": "8733847806",
+                  "pin": "382028",
+                  "dob": "0000-00-00",
+                  "cityId": "1",
+                  "country_code": "91",
+                  "photo": "",
+                  "address": "",
+                }
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "status": true,
+              "data": {
+                code: 17012,
+                message: 'User info updated successfully'
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                code: 17011,
+                message: 'Error in user info update.'
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                code: 2008,
+                message: 'Invalid user profile update request'
+              }
+            }
+
+
+# Group Device
+<!--------------------------------------- Device API START --------------------------------------->
+This section groups Device specific API
+
+### saveDeviceLocation  [POST /device/save-device-location]
+saves device location.
+
++ Request (application/json)
+  + Headers
+
+            api-key: 1,
+            udid: "8817480565574762",
+            device-type: "android"
+            Authorization:b6db2fd0-db3f-11e7-9d04-c1881bd29c91
+
+  + Body
+
+            {
+              "device_location_id": 1 // in update,
+            	"location_name": "test's Home",
+            	"device_location_type_id": 1
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "status": true,
+              "data": {
+                code: 18004,
+                message: "Device Location Inserted Successfully"
+              }
+            }
+
+            {
+              "status": true,
+              "data": {
+                code: 18005,
+                message: "Device Location Updated Successfully"
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                "code": 2011,
+                "message": "Invalid insert device location request"
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                code: 18002,
+                message: "Error in insert device location"
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                code: 18003,
+                message: "Error in update device location"
+              }
+            }
+
+
+### Admin - insert Device  [POST /device/insert-device]
+insert new device(Admin)
+
++ Request (application/json)
+  + Headers
+
+            api-key: 1,
+            udid: "8817480565574762",
+            device-type: "android"
+            Authorization:b6db2fd0-db3f-11e7-9d04-c1881bd29c91
+
+  + Body
+
+            {
+              "device_type_id": 1,
+            	"manufactured_date": "2018-03-27T06:24:24.758Z",
+            	"version": 0.1
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "status": true,
+              "data": {
+                code: 18007,
+                message: "Device Inserted Successfully"
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                  code: 2012,
+                  message: 'Invalid insert device request'
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                code: 18006,
+                message: "Error in insert device"
+              }
+            }
+
+### insert User Device  [POST /device/insert-user-device]
+insert device for user
+
++ Request (application/json)
+  + Headers
+
+            api-key: 1,
+            udid: "8817480565574762",
+            device-type: "android"
+            Authorization:b6db2fd0-db3f-11e7-9d04-c1881bd29c91
+
+  + Body
+
+            {
+              	"device_type_id": 2,
+                "device_location_id": 1,
+	              "manufactured_date": "2018-03-27T06:24:24.758Z",
+	              "version": 0.1
+            }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "status": true,
+              "data": {
+                code: 18010,
+                message: "Your device successfully inserted"
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                  code: 2013,
+                  message: 'Invalid insert user device request'
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                code: 18008,
+                message: "Error in check device"
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                code: 18009,
+                message: "Incorrect device details, Please Check again!"
+              }
+            }
+
+### Admin - get Devices  [GET /device/get-devices]
+get devices
+
++ Request (application/json)
+  + Headers
+
+            api-key: 1,
+            udid: "8817480565574762",
+            device-type: "android"
+            Authorization:b6db2fd0-db3f-11e7-9d04-c1881bd29c91
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "status": true,
+                "page": {},
+                "data": [
+                    {
+                        "device_id": 2,
+                        "device_type_id": 1,
+                        "device_name": "Raspberrypi",
+                        "device_version": "3 Model B",
+                        "device_key": "9bdcf6be-3187-11e8-9234-0123456789ab",
+                        "version": 0.1,
+                        "manufactured_date": "2018-03-27T06:55:24.000Z"
+                    },
+                    {
+                        "device_id": 3,
+                        "device_type_id": 2,
+                        "device_name": "Arduino",
+                        "device_version": "UNO",
+                        "device_key": "841769be-31ab-11e8-9234-0123456789ab",
+                        "version": 0.1,
+                        "manufactured_date": "2018-03-27T06:24:24.000Z"
+                    },
+                    {
+                        "device_id": 4,
+                        "device_type_id": 2,
+                        "device_name": "Arduino",
+                        "device_version": "UNO",
+                        "device_key": "d3493cfe-31ad-11e8-9234-0123456789ab",
+                        "version": 0.1,
+                        "manufactured_date": "2018-03-27T06:24:24.000Z"
+                    }
+                ]
+            }
+
+            {
+              "status": false,
+              "error": {
+                  code: 18011,
+                  message: "You are not authorised!"
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                code: 18012,
+                message: "Error in get devices"
+              }
+            }
+
+
+### get User Devices  [GET /device/get-user-devices]
+get devices
+
++ Request (application/json)
+  + Headers
+
+            api-key: 1,
+            udid: "8817480565574762",
+            device-type: "android"
+            Authorization:b6db2fd0-db3f-11e7-9d04-c1881bd29c91
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "status": true,
+                "page": {},
+                "data": [
+                    {
+                        "user_device_id": 1,
+                        "device_id": 4,
+                        "device_type_id": 2,
+                        "device_name": "Arduino",
+                        "location_name": "Bedroom",
+                        "device_location_type": "Home",
+                        "device_version": "UNO",
+                        "device_key": "d3493cfe-31ad-11e8-9234-0123456789ab",
+                        "version": 0.1,
+                        "manufactured_date": "2018-03-27T06:24:24.000Z"
+                    }
+                ]
+            }
+
+            {
+              "status": false,
+              "error": {
+                code: 18013,
+                message: "Error in get devices"
+              }
+            }
+
+### get Device Controller  [GET /device/get-device-controller]
+get device controller
+
++ Request (application/json)
+  + Headers
+
+            api-key: 1,
+            udid: "8817480565574762",
+            device-type: "android"
+            Authorization: b6db2fd0-db3f-11e7-9d04-c1881bd29c91
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "status": true,
+                "page": {},
+                "data": [
+                    {
+                        "device_controller_id": 1,
+                        "device_controller_name": "Fan in BedRoom",
+                        "device_controller_type_name": "Fan",
+                        "device_id": 1,
+                        "device_controller_type_id": 1,
+                        "pin": 15,
+                        "voltage": 230
+                    }
+                ]
+            }
+
+            {
+              "status": false,
+              "error": {
+                code: 18019,
+                message: "Error in get device controller"
+              }
+            }
+
+### delete User Devices  [DELETE /device/delete-user-device/{user_device_id}]
+delete user devices
+
++ Request (application/json)
+  + Headers
+
+            api-key: 1,
+            udid: "8817480565574762",
+            device-type: "android"
+            Authorization:b6db2fd0-db3f-11e7-9d04-c1881bd29c91
+
++ Parameters
+    + user_device_id: 1  (number) - // user_device_id.
+
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+              "status": true,
+              "data": {
+                code: 18015,
+                message: "Device deleted Successfully"
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                code: 18014,
+                message: "Error in delete device"
+              }
+            }
+
+            {
+              "status": false,
+              "error": {
+                code: 2014,
+                message: "Invalid request for delete device"
+              }
+            }
